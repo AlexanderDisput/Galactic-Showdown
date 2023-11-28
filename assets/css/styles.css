@@ -1,4 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Poppins:wght@200&display=swap');
+/* rules 
+font-family: 'Orbitron', sans-serif;
+font-family: 'Poppins', sans-serif; 
+*/
+
 body {
     background: rgb(25,4,130);
-    background: linear-gradient(90deg, rgba(25,4,130,1) 0%, rgba(119,82,254,1) 54%, rgba(194,217,255,1) 100%);
+    background: linear-gradient(270deg, rgba(25,4,130,1) 0%, rgba(119,82,254,1) 31%, rgba(194,217,255,1) 100%);
+
+  }
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
 }
+
+h2 {
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
+  .game-area {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    width: 80vw;
+    max-width: 1000px;
+    max-height: 900px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+.player-choice {
+    align-self: flex-start;
+    background-color: white;
+    width: 35%;
+    height: 100%;
+}
+
+.computer-choice {
+    align-self: flex-start;
+    background-color: white;
+    width: 35%;
+    height: 100%;
+}
+
+.versus-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: white;
+}
+
+.score-area {
+    background-color: white;
+    height: 15vh;
+    width: 80vw;
+    max-width: 1000px;
+    max-height: 200px;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+}
+
+  .next-round-btn {
+    background-color: #D9FE52;
+    border: none;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    margin: auto;
+    display: block;
+  }
+
+  .btn-text {
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+  }
