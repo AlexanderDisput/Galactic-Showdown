@@ -5,38 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="assets/js/script.js"></script>
     <!-- font awesome assets -->
     <!-- google fonts -->
     <!-- favicon -->
-    <title>Document</title>
+    <title>Galactic Showdown</title>
   </head>
   <body>
-    <!-- <section> -->
+    <!-- Div Pop up that shows the rules of the game onload 
+    Source: https://dev.to/konstantinstanmeyer/creating-pop-ups-11om-->
+    <div id="blur-cover">
+      <div id="pop-up">
+        <div id="close">+</div>
+
+      </div>
+   </div>
+    <section>
       <h1>Galactic Showdown</h1>
-      <!-- game are where the choices of the player and the computer are shown -->
+      <!-- game area where the choices of the player and the computer are shown -->
       <div class="game-area">
         <div class="player-choice">
           <h2>YOU</h2>
-          <img src="" alt="" />
+          <img id="player-image" src="assets/images/Avatar-removebg-preview.png" alt="" />
         </div>
         <div><span class="versus-text">vs</span></div>
         <div class="computer-choice">
           <h2>COMPUTER</h2>
-          <img src="" alt="" />
+          <img id="computer-image" src="assets/images/Computer-removebg-preview.png" alt="" />
         </div>
       </div>
       <!-- area in which the player and computer scores are counted -->
       <div class="score-area">
-        <p>Player Score <span id="player-score">0</span></p>
-        <p>Computer Score <span id="computer-score">0</span></p>
+        <div class="player-score-wrapper">
+          <p>Player Score <br><span id="player-score">0</span></p>
+        </div>
+        <div class="computer-score-wrapper">
+          <p>Computer Score <br><span id="computer-score">0</span></p>
+        </div>
       </div>
       <!-- Button for starting the next round -->
       <button class="next-round-btn">
         <span class="btn-text">Next Round</span>
       </button>
 
-      <script src="assets/js/script.js"></script>
-    <!-- </section> -->
+      <!-- Your script for generating shooting stars -->
+    </section>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
