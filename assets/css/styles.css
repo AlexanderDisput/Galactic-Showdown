@@ -5,8 +5,6 @@ font-family: 'Poppins', sans-serif;
 */
 
 body {
-  /* background: rgb(25,4,130);
-    background: linear-gradient(180deg, rgba(25,4,130,1) 0%, rgba(119,82,254,1) 31%, rgba(194,217,255,1) 100%); */
   background-image: url("/assets/images/space-background.webp");
   background-attachment: fixed;
   background-size: 1000px;
@@ -32,13 +30,21 @@ h2 {
   text-align: center;
 }
 
-img {
+.choice img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: block;
   width: 80%;
+}
+
+input {
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
@@ -69,22 +75,13 @@ button:active {
   margin-bottom: 20px;
 }
 
-.player-choice {
+.choice {
   position: relative;
   align-self: flex-start;
   background-color: white;
   width: 35%;
   height: 100%;
 }
-
-.computer-choice {
-  position: relative;
-  align-self: flex-start;
-  background-color: white;
-  width: 35%;
-  height: 100%;
-}
-
 .versus-text {
   font-family: "Orbitron", sans-serif;
   font-size: 2rem;
@@ -166,6 +163,9 @@ button:active {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  height: 20vh;
+  max-height: 300px;
+  padding: 50px;
 }
 
 .welcome-text p {
@@ -196,9 +196,10 @@ button:active {
   z-index: 2;
   box-shadow: 11px 10px 43px 0px rgba(255,255,255,1);
   background-color: #F8F9F5;
+  padding: 30px;
 }
 
-#close{
+.close{
   position: absolute;
   top: 0;
   cursor: pointer;
@@ -252,5 +253,40 @@ button:active {
   border: none;
   /* border: 1px solid black; */
   color: black;
+  box-shadow: 5px 5px 21px 0px rgba(0,0,0,0.7);
+}
+
+.to-rules {
+  margin-bottom: 10px;
+  padding: 3px 20px 3px 20px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #d9fe52;
+  border: 1px solid black
+}
+
+#player-pick-outer {
+  background-color: #F8F9F5;
+  width: 80vw;
+  max-width: 800px;
+  height: 40vh;
+  border-radius: 15px;
+  box-shadow: 11px 10px 43px 0px rgba(255,255,255,1);
+  padding: 20px;
+}
+
+.player-pick-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.player-pick-inner img {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 20px;
   box-shadow: 5px 5px 21px 0px rgba(0,0,0,0.7);
 }
