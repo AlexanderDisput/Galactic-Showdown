@@ -37,6 +37,7 @@ h2 {
   transform: translate(-50%, -50%);
   display: block;
   width: 80%;
+  max-width: 200px;
 }
 
 input {
@@ -61,7 +62,7 @@ button:active {
 }
 
 .game-area {
-  background-color: black;
+  background-color: #F8F9F5;
   display: flex;
   flex-direction: row;
   height: 45vh;
@@ -71,14 +72,15 @@ button:active {
   margin: auto;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 50px 6px rgba(0,0,0,0),
 }
 
 .choice {
   position: relative;
   align-self: flex-start;
-  background-color: white;
+  /* background-color: white; */
   width: 35%;
   height: 100%;
 }
@@ -119,7 +121,8 @@ button:active {
   margin: auto;
   display: block;
   margin-bottom: 10px;
-
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
 }
 
 .btn-text {
@@ -283,10 +286,25 @@ button:active {
 }
 
 .player-pick-inner img {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
   margin: auto;
   cursor: pointer;
   border-radius: 20px;
   box-shadow: 5px 5px 21px 0px rgba(0,0,0,0.7);
+}
+
+.hover-image {
+  transition: all 0.3s; 
+}
+
+.hover-image:hover {
+  transform: translateY(4px); 
+  border-radius: 20px;
+  background-color: #f8f9f6;
+}
+
+#computer-image, #player-image {
+  border-radius: 20px;
+  box-shadow: 5px 5px 21px 3px rgba(0,0,0,0.7);
 }

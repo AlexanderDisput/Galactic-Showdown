@@ -1,15 +1,27 @@
 // run game funtion that will execute the game once the button start game or start new game has been clicked
 
 /**
- * The rulebook will provide the comparison table to evaluate a winner in the round
+ * This dictionary will provide the comparison table to evaluate a winner in the round
  */
-var rulebook = {
+const rulebook = {
   Satellite: ["Spaceship", "Alien"],
-  Meteorite: ["Satallite", "Laser"],
-  Spaceship: ["Meteorite", "Laser"],
+  Meteor: ["Satellite", "Laser"],
+  Spaceship: ["Meteor", "Laser"],
   Laser: ["Alien", "Satellite"],
-  Alien: ["Meteorite", "Spaceship"],
+  Alien: ["Meteor", "Spaceship"],
 };
+
+/**
+ * This dictionary is used to assign an image source to the corresponding key
+ */
+const imageSources = {
+  Alien: "assets/images/alien.webp",
+  Meteor: "assets/images/meteor.webp",
+  Spaceship: "assets/images/spaceship.webp",
+  Laser: "assets/images/laser.webp",
+  Satellite: "assets/images/satellite.webp"
+}
+
 
 /**
  * This function gives every button in the DOM the eventlistener and makes sure that buttons that are generated
@@ -25,11 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       storeName();
       showRules();
-    } else if (
+    } if (
       event.target.tagName === "BUTTON" &&
       event.target.getAttribute("data-type") === "start-game"
     ) {
       event.preventDefault();
+      console.log("Thjis event has started")
       runGame();
     } else if (
       event.target.tagName === "BUTTON" &&
@@ -90,20 +103,17 @@ function showRules() {
 
 function runGame() {
     // removes the overlay if it is there
-    let toRemove = document.getElementById("blur-cover");
-    if (toRemove){
-        toRemove.remove();
-    }
+    removeBlurCover()
   let html = `
   <div id="blur-cover">
     <div id="player-pick-outer">
         <h2>Make your choice</h2>
         <div class="player-pick-inner">
-        <a href="#"><img data-type="alien" src="assets/images/alien.webp" alt="Image of an alien"></a>
-        <a href="#"><img data-type="spaceship" src="assets/images/spaceship.webp" alt="Image of a spaceship"></a>
-        <a href="#"><img data-type="meteor" src="assets/images/meteor.webp" alt="Image of a meteor"></a>
-        <a href="#"><img data-type="satellite" src="assets/images/satellite.webp" alt="Image of a satellite"></a>
-        <a href="#"><img data-type="laser" src="assets/images/laser.webp" alt="Image of a laser"></a>
+        <a class="hover-image" href="#"><img data-type="Alien" src="assets/images/alien.webp" alt="Image of an alien"></a>
+        <a class="hover-image" href="#"><img data-type="Spaceship" src="assets/images/spaceship.webp" alt="Image of a spaceship"></a>
+        <a class="hover-image" href="#"><img data-type="Meteor" src="assets/images/meteor.webp" alt="Image of a meteor"></a>
+        <a class="hover-image" href="#"><img data-type="Satellite" src="assets/images/satellite.webp" alt="Image of a satellite"></a>
+        <a class="hover-image" href="#"><img data-type="Laser" src="assets/images/laser.webp" alt="Image of a laser"></a>
         </div>
     </div>
     </div>
@@ -113,34 +123,111 @@ function runGame() {
     console.log(container)
     document.body.appendChild(container.firstElementChild)
 
-//   Computer chooses the image
     
+      let images = document.querySelectorAll(".hover-image img");
 
-document.addEventListener("click", function(event){
-    if(event.target.tagName === "IMG" && event.target.getAttribute("data-type") === "alien") {
+    
+    images.forEach(function(image){
+      image.addEventListener("click", function(event){
         event.preventDefault();
+        let computerChoice1 = computerChoice(rulebook)
+        let playerChoice = event.target.getAttribute("data-type");
 
-    }
-})
+        // change the src of an image to the url of a 
+        let playerImage = document.getElementById("player-image")
+        let computerImage = document.getElementById("computer-image")
+        playerImage.src = imageSources[playerChoice]
+        computerImage.src = imageSources[computerChoice1]
+
+        compareChoices(playerChoice, computerChoice1, rulebook);
+        removeBlurCover();
+      })
+    })
+
+
+    
 }
 
-// pseudo code:
+/**
+ * This function compares the choice of the computer agains the choice of the player and determines
+ * the winner using the const rulebook.
+ */
+function compareChoices(playerChoice, computerChoice, rulebook) {
+  if (playerChoice == computerChoice) {
+    console.log("It's a draw")
+  }
+  else if (rulebook[playerChoice].includes(computerChoice)) {
+    console.log("Player Wins!")
+    incrementScorePlayer();
+  }
+  else {
+    console.log("Computer Wins!") 
+    incrementScoreComputer()
+  }
+}
 
-// function create choices:
-//     create html element with images
-//     add event listeners to the images
-//     save the choice to the var player choice
+/**
+ * This function lets the computer choose a random key within
+ * the rulebook dictionary and returns the key as string that we will use for comparison
+ */
+ function computerChoice(rulebook) {
+  let choices = Object.keys(rulebook)
+  let random = Math.floor(Math.random()*5)
+  let choice = choices[random]
+  return choice
+}
 
-// // How to insert HTMl into DOM:
-// let html = `
-//   <table>
-//     <thead>
-//       <tr>
-//         <th>Fruit</th>
-//         <th>Image</th>
-//       </tr>
-//     </thead>
-//     <tbody>
-// `;
-// Set the document body's innerHTML to the html string above
-// document.body.innerHTML = html;
+/**
+ * This function increments the score of the player and changes the value in the DOM
+ */
+function incrementScorePlayer() {
+  let scoreSpan = document.getElementById("player-score");
+  score = parseInt(scoreSpan.textContent);
+  score += 1
+  scoreSpan.innerHTML = score
+}
+
+/**
+ * This function increments the score of the computer and changes the value in the DOM
+ */
+function incrementScoreComputer() {
+  let scoreSpan = document.getElementById("computer-score");
+  score = parseInt(scoreSpan.textContent);
+  score += 1
+  scoreSpan.innerHTML = score
+}
+
+/**
+ * This function removes the div with the #blur-cover to make sure that we do not add
+ * additional event listeners to the images and bring the user back to the overview
+ */
+function removeBlurCover() {
+  let toRemove = document.getElementById("blur-cover");
+  if (toRemove){
+      toRemove.remove();
+  }
+}
+
+/**
+ * This function resets the score board to 0 
+ */
+function resetScore() {
+  let playerScore = document.getElementById("player-score")
+  let computerScore = document.getElementById("computer-score")
+
+  playerScore.textContent = 0
+  computerScore.textContent = 0
+}
+
+
+function win() {
+
+}
+
+function draw() {
+
+}
+
+function lost() {
+  
+}
