@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
       event.target.getAttribute("data-type") === "start-game"
     ) {
       event.preventDefault();
-      console.log("Thjis event has started")
       runGame();
+      // removeBlurCover()
     } else if (
       event.target.tagName === "BUTTON" &&
       event.target.getAttribute("data-type") === "show-rules"
@@ -51,17 +51,26 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       showRules();
     }
+    else if (
+      event.target.tagName === "BUTTON" &&
+      event.target.getAttribute("data-type") === "reset"
+    ) {
+      resetScore();
+    }
   });
 });
 
 /**
  * This function collects the name from the userinput in the welcome screen and replaces YOU with the players name
  */
-var userName;
 function storeName() {
-  userName = document.getElementById("player-name").value;
-  let playerName = document.getElementById("player-name-headline");
-  playerName.textContent = userName.toUpperCase();
+  userName = document.getElementById("player-name-choice").value;
+  // Checks if the user has given no Input. If so, the username is changed to YOU
+  if (userName == "") {
+    userName = "YOU"
+  }
+  let displayName = document.getElementById("display-player-name");
+  displayName.textContent = userName.toUpperCase();
 }
 
 // function to use the storeName and change Name function once the Next submit button
@@ -88,7 +97,6 @@ function showRules() {
     `;
     let container = document.createElement("div");
     container.innerHTML = html;
-    console.log(container)
     document.body.appendChild(container.firstElementChild)
 }
 
@@ -120,7 +128,6 @@ function runGame() {
     `;
     let container = document.createElement("div");
     container.innerHTML = html;
-    console.log(container)
     document.body.appendChild(container.firstElementChild)
 
     
@@ -154,14 +161,17 @@ function runGame() {
  */
 function compareChoices(playerChoice, computerChoice, rulebook) {
   if (playerChoice == computerChoice) {
+    draw()
     console.log("It's a draw")
   }
   else if (rulebook[playerChoice].includes(computerChoice)) {
     console.log("Player Wins!")
+    win()
     incrementScorePlayer();
   }
   else {
     console.log("Computer Wins!") 
+    lost()
     incrementScoreComputer()
   }
 }
@@ -221,13 +231,46 @@ function resetScore() {
 
 
 function win() {
+  let html = `
+  <div id="blur-cover">
+    <div>
+      <h1>YOU WIN</h1>
+    </div>
+  </div>
+  `
+  let container = document.createElement("div");
+    container.innerHTML = html;
+    document.body.appendChild(container.firstElementChild)
 
+    setTimeout(removeBlurCover, 2000)
 }
 
 function draw() {
+  let html = `
+  <div id="blur-cover">
+    <div>
+      <h1>IT'S A DRAW</h1>
+    </div>
+  </div>
+  `
+  let container = document.createElement("div");
+    container.innerHTML = html;
+    document.body.appendChild(container.firstElementChild)
 
+  setTimeout(removeBlurCover, 2000)
 }
 
 function lost() {
-  
+  let html = `
+  <div id="blur-cover">
+    <div>
+      <h1>YOU LOST</h1>
+    </div>
+  </div>
+  `
+  let container = document.createElement("div");
+    container.innerHTML = html;
+    document.body.appendChild(container.firstElementChild)
+
+    setTimeout(removeBlurCover, 2000)
 }

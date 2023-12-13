@@ -24,9 +24,9 @@
           <p>Welcome to</p>
           <h1>GALACTIC SHOWDOWN</h1>
           <!-- Add focus here so when the page is loaded up, the input field is already chosen -->
-          <input id="player-name" type="text" name="player-name" placeholder="What's your name?" required/>
+          <input id="player-name-choice" type="text" name="player-name-choice" placeholder="What's your name?" required/>
           <button class="to-rules" data-type="submit-name">
-            Next <i class="fa-solid fa-arrow-right"></i>
+            NEXT
           </button>
         </div>
       </div>
@@ -36,7 +36,7 @@
       <!-- game area where the choices of the player and the computer are shown -->
       <div class="game-area">
         <div class="choice">
-          <h2 id="player-name-headline">YOU</h2>
+          <h2 id="display-player-name">YOU</h2>
           <img
             id="player-image"
             src="assets/images/player-avatar.webp"
@@ -56,20 +56,27 @@
       <!-- area in which the player and computer scores are counted -->
       <div class="score-area">
         <div class="player-score-wrapper">
-          <p>Player Score <br /><span id="player-score">0</span></p>
+          <span id="player-score">0</span>
         </div>
         <div class="computer-score-wrapper">
-          <p>Computer Score <br /><span id="computer-score">0</span></p>
+          <span id="computer-score">0</span>
         </div>
       </div>
       <!-- Button for starting the next round -->
-      <button data-type="start-game" class="next-round-btn">
-        <!-- <span class="btn-text">Next Round</span> -->
-        Start Round
-      </button>
-      <button data-type="show-rules" class="next-round-btn">
-        Rules
-      </button>
+      <div class="controls">
+        <button data-type="reset" class="reset-btn">
+          RESET
+        </button>
+        <button data-type="show-rules" class="rules-btn">
+          RULES
+        </button>
+        </div>
+        <br>
+        <button data-type="start-game" class="start-round-btn">
+          START ROUND
+        </button>
+      </div>
+      
 
       <!-- Your script for generating shooting stars -->
     </section>
@@ -77,6 +84,4 @@
   </body>
 </html>
 
-<!-- <div>
 
-</div> -->
