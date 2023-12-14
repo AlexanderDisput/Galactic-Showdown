@@ -401,7 +401,7 @@ p {
   align-self: flex-end;
   } */
   h2 {
-    margin: 30px
+    margin: 15%;
   }
 
   p {
@@ -633,6 +633,7 @@ p {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    overflow-y: scroll;
   }
   
   #game-rules h1 {

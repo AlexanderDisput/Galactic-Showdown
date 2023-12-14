@@ -149,18 +149,17 @@ function runGame() {
  */
 function compareChoices(playerChoice, computerChoice, rulebook) {
   if (playerChoice == computerChoice) {
-    draw()
-    console.log("It's a draw")
+    showMessage("IT'S A DRAW")
   }
   else if (rulebook[playerChoice].includes(computerChoice)) {
     console.log("Player Wins!")
-    win()
-    incrementScorePlayer();
+    showMessage("YOU WIN")
+    incrementScore("player");
   }
   else {
     console.log("Computer Wins!") 
-    lost()
-    incrementScoreComputer()
+    showMessage("YOU LOSE")
+    incrementScore("computer")
   }
 }
 
@@ -176,25 +175,15 @@ function compareChoices(playerChoice, computerChoice, rulebook) {
 }
 
 /**
- * This function increments the score of the player and changes the value in the DOM
+ * This function increments the score of the player/computer and changes the value in the DOM
  */
-function incrementScorePlayer() {
-  let scoreSpan = document.getElementById("player-score");
-  score = parseInt(scoreSpan.textContent);
-  score += 1
-  scoreSpan.innerHTML = score
-}
 
-/**
- * This function increments the score of the computer and changes the value in the DOM
- */
-function incrementScoreComputer() {
-  let scoreSpan = document.getElementById("computer-score");
-  score = parseInt(scoreSpan.textContent);
-  score += 1
-  scoreSpan.innerHTML = score
+function incrementScore(playerType) {
+  let scoreSpan = document.getElementById(`${playerType}-score`);
+  let score = parseInt(scoreSpan.textContent);
+  score += 1;
+  scoreSpan.innerHTML = score;
 }
-
 /**
  * This function removes the div with the #blur-cover to make sure that we do not add
  * additional event listeners to the images and bring the user back to the overview
@@ -217,51 +206,21 @@ function resetScore() {
   computerScore.textContent = 0
 }
 
-function win() {
+/**
+ * This function gives the user a visual queue
+ *  to communicate the result of the game
+ */
+function showMessage(message) {
   let html = `
-  <div id="blur-cover">
-    <div>
-      <h1>YOU WIN</h1>
+    <div id="blur-cover">
+      <div>
+        <h1>${message}</h1>
+      </div>
     </div>
-  </div>
-  `
+  `;
   let container = document.createElement("div");
-    container.innerHTML = html;
-    document.body.appendChild(container.firstElementChild)
+  container.innerHTML = html;
+  document.body.appendChild(container.firstElementChild);
 
-    setTimeout(removeBlurCover, 2000)
+  setTimeout(removeBlurCover, 2000);
 }
-
-function draw() {
-  let html = `
-  <div id="blur-cover">
-    <div>
-      <h1>IT'S A DRAW</h1>
-    </div>
-  </div>
-  `
-  let container = document.createElement("div");
-    container.innerHTML = html;
-    document.body.appendChild(container.firstElementChild)
-
-  setTimeout(removeBlurCover, 2000)
-}
-
-function lost() {
-  let html = `
-  <div id="blur-cover">
-    <div>
-      <h1>YOU LOST</h1>
-    </div>
-  </div>
-  `
-  let container = document.createElement("div");
-    container.innerHTML = html;
-    document.body.appendChild(container.firstElementChild)
-
-    setTimeout(removeBlurCover, 2000)
-}
-
-
-
-checkResult()
