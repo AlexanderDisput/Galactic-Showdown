@@ -1,5 +1,3 @@
-// run game funtion that will execute the game once the button start game or start new game has been clicked
-
 /**
  * This dictionary will provide the comparison table to evaluate a winner in the round
  */
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       event.preventDefault();
       runGame();
-      // removeBlurCover()
     } else if (
       event.target.tagName === "BUTTON" &&
       event.target.getAttribute("data-type") === "show-rules"
@@ -73,8 +70,10 @@ function storeName() {
   displayName.textContent = userName.toUpperCase();
 }
 
-// function to use the storeName and change Name function once the Next submit button
-// is clicked which will also bring show the rules
+/**
+ * This function displays the game rules and handles
+ *  removal of the blur cover
+ */
 function showRules() {
     let toRemove = document.getElementById("blur-cover");
     if (toRemove){
@@ -100,9 +99,12 @@ function showRules() {
     document.body.appendChild(container.firstElementChild)
 }
 
+/**
+ * This function runs the game and handles the
+ *  display of player choices
+ */
 function runGame() {
-    // removes the overlay if it is there
-    removeBlurCover()
+  removeBlurCover()
   let html = `
   <div id="blur-cover">
     <div id="player-pick-outer">

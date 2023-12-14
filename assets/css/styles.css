@@ -376,30 +376,9 @@ p {
     background-color: #C3E449
   }
 }
-  
-
-
-
 /* Media query to allow different styles for smaller devices */
 @media screen and (max-width: 768px) {
-  /* .game-area {
-    flex-direction: column;
-  }
-
-  .choice {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  h2 {
-    align-self: center;
-  }
-
-  #player-image {
-  align-self: flex-end;
-  } */
+ 
   h2 {
     margin: 15%;
   }
@@ -624,7 +603,8 @@ p {
   
   #game-rules {
     background-color: #F8F9F5;
-    width: 80vw;
+    width: 100vw;
+    height: 100vh;
     max-width: 800px;
     border-radius: 15px;
     box-shadow: 11px 10px 43px 0px rgba(255,255,255,1);
@@ -646,7 +626,8 @@ p {
     font-size: 1.75rem;
     margin-left: 40px;
     margin-right: 40px;
-  
+    margin-top: 0;
+    margin-bottom: 0;
   }
   #game-rules p {
     margin: 0;
@@ -684,7 +665,7 @@ p {
     background-color: #F8F9F5;
     width: 80vw;
     max-width: 800px;
-    height: 60vh;
+    height: 100vh;
     border-radius: 15px;
     box-shadow: 11px 10px 43px 0px rgba(255,255,255,1);
     padding: 20px;
@@ -756,4 +737,11 @@ p {
   .rules-btn:hover {
     background-color: #C3E449
   } 
+}
+
+@media screen and (max-width: 480px) {
+  .player-pick-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
