@@ -100,15 +100,6 @@ function showRules() {
     document.body.appendChild(container.firstElementChild)
 }
 
-// function that will increment player score
-// function that will increment computer score
-
-// funtion to reset scores
-
-// function to choose an image from the image array for computer and add it to the DOM
-// function to compare images and determine winner through dictionary
-
-
 function runGame() {
     // removes the overlay if it is there
     removeBlurCover()
@@ -150,9 +141,6 @@ function runGame() {
         removeBlurCover();
       })
     })
-
-
-    
 }
 
 /**
@@ -229,7 +217,6 @@ function resetScore() {
   computerScore.textContent = 0
 }
 
-
 function win() {
   let html = `
   <div id="blur-cover">
@@ -274,3 +261,7 @@ function lost() {
 
     setTimeout(removeBlurCover, 2000)
 }
+
+
+
+checkResult()
