@@ -1,8 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Poppins:wght@200&display=swap");
-/* rules 
-font-family: 'Orbitron', sans-serif;
-font-family: 'Poppins', sans-serif; 
-*/
 
 body {
   background-image: url("../../assets/images/space-background.webp");
@@ -378,7 +374,6 @@ p {
 }
 /* Media query to allow different styles for smaller devices */
 @media screen and (max-width: 768px) {
- 
   h2 {
     margin: 15%;
   }

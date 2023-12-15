@@ -1,14 +1,13 @@
 /**
  * This dictionary will provide the comparison table to evaluate a winner in the round
  */
-const rulebook = {
+ const rulebook = {
   Satellite: ["Spaceship", "Alien"],
   Meteor: ["Satellite", "Laser"],
   Spaceship: ["Meteor", "Laser"],
   Laser: ["Alien", "Satellite"],
   Alien: ["Meteor", "Spaceship"],
 };
-
 /**
  * This dictionary is used to assign an image source to the corresponding key
  */
@@ -18,16 +17,12 @@ const imageSources = {
   Spaceship: "assets/images/spaceship.webp",
   Laser: "assets/images/laser.webp",
   Satellite: "assets/images/satellite.webp"
-}
-
-
+};
 /**
  * This function gives every button in the DOM the eventlistener and makes sure that buttons that are generated
  * dynamically also have the same event listener attached to them
  */
 document.addEventListener("DOMContentLoaded", function () {
-  // let buttons = document.getElementsByTagName("button");
-
   document.addEventListener("click", function (event) {
     if (
       event.target.tagName === "BUTTON" &&
@@ -56,20 +51,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
 /**
  * This function collects the name from the userinput in the welcome screen and replaces YOU with the players name
  */
 function storeName() {
-  userName = document.getElementById("player-name-choice").value;
+  let userName = document.getElementById("player-name-choice").value;
   // Checks if the user has given no Input. If so, the username is changed to YOU
   if (userName == "") {
-    userName = "YOU"
+    userName = "YOU";
   }
   let displayName = document.getElementById("display-player-name");
   displayName.textContent = userName.toUpperCase();
 }
-
 /**
  * This function displays the game rules and handles
  *  removal of the blur cover
@@ -79,7 +72,6 @@ function showRules() {
     if (toRemove){
         toRemove.remove();
     }
-    
     let html = `
     <div id="blur-cover">
     <div id="game-rules">
@@ -96,15 +88,14 @@ function showRules() {
     `;
     let container = document.createElement("div");
     container.innerHTML = html;
-    document.body.appendChild(container.firstElementChild)
+    document.body.appendChild(container.firstElementChild);
 }
-
 /**
  * This function runs the game and handles the
  *  display of player choices
  */
 function runGame() {
-  removeBlurCover()
+  removeBlurCover();
   let html = `
   <div id="blur-cover">
     <div id="player-pick-outer">
@@ -121,65 +112,54 @@ function runGame() {
     `;
     let container = document.createElement("div");
     container.innerHTML = html;
-    document.body.appendChild(container.firstElementChild)
-
-    
-      let images = document.querySelectorAll(".hover-image img");
-
-    
+    document.body.appendChild(container.firstElementChild);
+    let images = document.querySelectorAll(".hover-image img");
     images.forEach(function(image){
       image.addEventListener("click", function(event){
         event.preventDefault();
-        let computerChoice1 = computerChoice(rulebook)
+        let computerChoice1 = computerChoice(rulebook);
         let playerChoice = event.target.getAttribute("data-type");
-
-        // change the src of an image to the url of a 
-        let playerImage = document.getElementById("player-image")
-        let computerImage = document.getElementById("computer-image")
-        playerImage.src = imageSources[playerChoice]
-        computerImage.src = imageSources[computerChoice1]
-
+        let playerImage = document.getElementById("player-image");
+        let computerImage = document.getElementById("computer-image");
+        playerImage.src = imageSources[playerChoice];
+        computerImage.src = imageSources[computerChoice1];
         compareChoices(playerChoice, computerChoice1, rulebook);
         removeBlurCover();
-      })
-    })
+      });
+    });
 }
-
 /**
  * This function compares the choice of the computer agains the choice of the player and determines
  * the winner using the const rulebook.
  */
 function compareChoices(playerChoice, computerChoice, rulebook) {
   if (playerChoice == computerChoice) {
-    showMessage("IT'S A DRAW")
+    showMessage("IT'S A DRAW");
   }
   else if (rulebook[playerChoice].includes(computerChoice)) {
-    console.log("Player Wins!")
-    showMessage("YOU WIN")
+    console.log("Player Wins!");
+    showMessage("YOU WIN");
     incrementScore("player");
   }
   else {
-    console.log("Computer Wins!") 
-    showMessage("YOU LOSE")
+    console.log("Computer Wins!");
+    showMessage("YOU LOSE");
     incrementScore("computer")
   }
 }
-
 /**
  * This function lets the computer choose a random key within
  * the rulebook dictionary and returns the key as string that we will use for comparison
  */
  function computerChoice(rulebook) {
-  let choices = Object.keys(rulebook)
-  let random = Math.floor(Math.random()*5)
-  let choice = choices[random]
-  return choice
+  let choices = Object.keys(rulebook);
+  let random = Math.floor(Math.random()*5);
+  let choice = choices[random];
+  return choice;
 }
-
 /**
  * This function increments the score of the player/computer and changes the value in the DOM
  */
-
 function incrementScore(playerType) {
   let scoreSpan = document.getElementById(`${playerType}-score`);
   let score = parseInt(scoreSpan.textContent);
@@ -196,18 +176,15 @@ function removeBlurCover() {
       toRemove.remove();
   }
 }
-
 /**
  * This function resets the score board to 0 
  */
 function resetScore() {
-  let playerScore = document.getElementById("player-score")
-  let computerScore = document.getElementById("computer-score")
-
-  playerScore.textContent = 0
-  computerScore.textContent = 0
+  let playerScore = document.getElementById("player-score");
+  let computerScore = document.getElementById("computer-score");
+  playerScore.textContent = 0;
+  computerScore.textContent = 0;
 }
-
 /**
  * This function gives the user a visual queue
  *  to communicate the result of the game
@@ -223,6 +200,5 @@ function showMessage(message) {
   let container = document.createElement("div");
   container.innerHTML = html;
   document.body.appendChild(container.firstElementChild);
-
   setTimeout(removeBlurCover, 2000);
 }
